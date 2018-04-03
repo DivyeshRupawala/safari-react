@@ -14,9 +14,17 @@ import PropTypes from 'prop-types'
 )*/
 
 /* Statefull component */
-
 class Profile extends Component {
-	render() {	
+	/* This method is used to improve performance of application 
+	 * when we are adding profile it will render for all element.
+	 * so we have kept condition if name is being changed than will call render method. 
+	*/
+	shouldComponentUpdate(nextProps, nextState) {
+		return nextProps.name !== this.props.name;
+	}
+
+	render() {
+		console.log("Profile render");
 		let hobbies = this.props.hobby.map( (h,i) => {
 			 return (
 				<li key={i}>{h}</li>
